@@ -4,13 +4,6 @@
  *
  * @help
  * ================================================================================
- * SETUP:
- * Make sure each screen in the 'img/system' folder is named 'Loading#.png' where #
- * is a number starting/going up from 1.
- * 
- * There should also be a base one called just 'Loading.png' 
- *
- * ================================================================================
  * SCRIPT CALL:
  * To change a tile's region ID, use the function "$gameMap.setTileId(x, y, r)"
  * where x and y are the tile, and r is the new region #
