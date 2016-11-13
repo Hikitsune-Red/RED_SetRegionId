@@ -1,5 +1,5 @@
 /*:
- * @plugindesc v1.01 A simple plug-in designed to allow the setting of Region ID's in-game
+ * @plugindesc v1.02 A simple plug-in designed to allow the setting of Region ID's in-game
  * @author Hikitsune-Red 火狐
  *
  * @help
@@ -8,6 +8,8 @@
  * To change a tile's region ID, use the function "$gameMap.setTileId(x, y, r)"
  * where x and y are the tile, and r is the new region #
  * Leaving r empty will turn the region ID into 0
+ * 
+ * To change a tile range, use the function "$gameMap.setTileSquareId(x, x2, y, y2, r)"
  *
  * ================================================================================
  * TERMS OF USE
@@ -59,9 +61,24 @@
 		this._REDRegions[mapId, (z * height + y) * width + x] = (regId || 0);
 	};
 	
+	Game_System.prototype.setREDRegionSquare = function(mapId, x, x2, y, y2, regId)
+	{
+		console.log('Setting region square: ');
+		for (i = x; i <= x2; i++) {
+			for (j = y; j <= y2; j++) {
+				$gameSystem.setREDRegion(mapId, i, j, 5, regId);
+			}
+		}
+	};
+	
 	Game_Map.prototype.setTileId = function(x, y, regId) 
 	{
 		$gameSystem.setREDRegion($gameMap._mapId, x, y, 5, regId);
+	};
+	
+	Game_Map.prototype.setTileSquareId = function(x, x2, y, y2, regId)
+	{
+		$gameSystem.setREDRegionSquare($gameMap._mapId, x, x2, y, y2, regId);
 	};
 	
 	var _Game_Map_tileId = Game_Map.prototype.tileId;
